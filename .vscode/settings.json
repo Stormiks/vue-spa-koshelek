@@ -1,0 +1,31 @@
+{
+  "eslint.workingDirectories": ["./"],
+  "files.watcherExclude": {
+      "**/.git/objects/**": true
+  },
+  "editor.minimap.enabled": false,
+  "html-css-class-completion.includeGlobPattern": "**/*.{css,less,scss,html,vue}",
+  "html-css-class-completion.excludeGlobPattern": "node_modules,dist",
+  "editor.formatOnSave": false,
+  "vetur.validation.template": true,
+  "path-intellisense.autoSlashAfterDirectory": true,
+  "path-intellisense.extensionOnImport": false,
+  "path-intellisense.absolutePathToWorkspace": true,
+  "path-intellisense.mappings": {
+    "~": "${workspaceRoot}/",
+    "@": "${workspaceRoot}/src",
+    "views": "${workspaceRoot}/src/views",
+    "lDefault": "${workspaceRoot}/src/views/layouts/DefaultLayout",
+    "lError": "${workspaceRoot}/src/views/layouts/ErrorLayout",
+    "assets": "${workspaceRoot}/src/assets",
+    "css": "${workspaceRoot}/src/assets/css",
+    "less": "${workspaceRoot}/src/assets/less",
+    "router": "${workspaceRoot}/src/router",
+    "components": "${workspaceRoot}/src/components",
+    "public": "${workspaceRoot}/src/views/public",
+    "store": "${workspaceRoot}/src/store",
+    "vuexModules": "${workspaceRoot}/src/store/modules",
+    "api": "${workspaceRoot}/src/api",
+    "layouts": "${workspaceRoot}/src/layouts",
+  }
+}
