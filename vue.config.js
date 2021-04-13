@@ -9,7 +9,7 @@ module.exports = {
       entry: 'src/main.js',
       template: 'public/index.html',
       filename: 'index.html',
-      title: process.env.VUE_APP_PAGE_TITLE
+      title: process.env.VUE_APP_PAGE_TITLE,
     }
   },
   assetsDir: 'assets',
@@ -20,7 +20,7 @@ module.exports = {
   productionSourceMap: process.env.NODE_ENV !== 'production',
   css: {
     extract: process.env.NODE_ENV === 'production',
-    sourceMap: true
+    sourceMap: true,
   },
   chainWebpack: (config) => {
     config.module
@@ -43,28 +43,29 @@ module.exports = {
         'router': path.resolve('src/router'),
         'store': path.resolve('src/store'),
         'components': path.resolve('src/components'),
-        'plugins': path.resolve('src/components/plugins')
-      }
+        'plugins': path.resolve('src/components/plugins'),
+      },
     },
   },
   pluginOptions: {
     svgSprite: {
       dir: 'src/assets/img/svg',
+      log: true,
       test: /\.(svg)(\?.*)?$/,
       loaderOptions: {
         extract: true,
-        spriteFilename: 'assets/img/svg/icons.[hash:8].svg'
+        spriteFilename: 'assets/img/svg/icons.[hash:8].svg',
       },
       pluginOptions: {
-        plainSprite: true
+        plainSprite: true,
       }
     },
     // https://github.com/nguyenvanduocit/vue-cli-plugin-style-resources-loader
     'style-resources-loader': {
       preProcessor: 'less',
       patterns: [
-        path.join(__dirname, './src/assets/less/_var.less')
+        path.join(__dirname, './src/assets/less/_var.less'),
       ]
-    }
-  }
+    },
+  },
 };

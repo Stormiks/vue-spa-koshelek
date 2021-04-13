@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   env: {
+    browser: true,
     node: true,
   },
   extends: [
@@ -18,7 +19,7 @@ module.exports = {
       {
         ignore: ['\.vue', '\.less', '\.js', '\.css'],
         commonjs: true,
-        caseSensitive: false
+        caseSensitive: false,
       }
     ],
     'import/extensions': [
