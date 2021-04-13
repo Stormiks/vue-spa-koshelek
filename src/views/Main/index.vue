@@ -1,34 +1,18 @@
 <template>
   <section class="main-page">
-    <div class="flex flex-col">
-      <div class="max-w-xs">
-        <label for="wallet" class="block text-sm font-medium text-gray-700"
-          >Добавьте тикер</label
-        >
-        <div class="mt-1 relative rounded-md shadow-md">
-          <input
-            v-model="ticker"
-            @keydown.enter="add"
-            type="text"
-            name="wallet"
-            id="wallet"
-            class="block w-full p-3 pr-10 border-gray-300 text-gray-900 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm rounded-md"
-            :placeholder="`Например ${symbolNames[0]}`"
-          />
-        </div>
-      </div>
-
-      <div class="available-tickers mt-2.5">
-        <small>доступные тикеры:</small>
-
+    <WalletTicker
+      :placeholder="String(symbolNames[0])"
+      @new-ticker="add"
+    >
+      <template v-slot:available-symbols>
         <span
           v-for="(symbolName) in symbolNames"
           :key="`available-ticker-${symbolName}`"
         >
           {{ symbolName }}
         </span>
-      </div>
-    </div>
+      </template>
+    </WalletTicker>
 
     <hr class="w-full border-t border-gray-600 my-4" />
 
@@ -77,9 +61,13 @@
 <script>
 import { subscribeToTicker, unsubscribeFromTicker } from '@/api';
 import { mapState } from 'vuex';
+import WalletTicker from './WalletField';
 
 export default {
   name: 'Main',
+  components: {
+    WalletTicker,
+  },
   data: () => ({
     ticker: '',
     filter: '',
