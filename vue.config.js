@@ -23,10 +23,10 @@ module.exports = {
     sourceMap: true,
   },
   chainWebpack: (config) => {
-    config.module
-      .rule('svg-sprite')
-      .use('svgo-loader')
-      .loader('svgo-loader');
+    // config.module
+    //   .rule('svg-sprite')
+    //   .use('svgo-loader')
+    //   .loader('svgo-loader');
   },
   configureWebpack: {
     devtool: 'source-map',
@@ -68,4 +68,16 @@ module.exports = {
       ]
     },
   },
+  devServer: {
+    proxy: {
+      '^/api/v3': {
+        target: 'https://api.binance.com',
+        changeOrigin: true,
+      }
+    },
+    overlay: {
+      warnings: false,
+      errors: false
+    }
+  }
 };
