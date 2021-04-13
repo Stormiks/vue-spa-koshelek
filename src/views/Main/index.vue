@@ -60,7 +60,7 @@
 
 <script>
 import { subscribeToTicker, unsubscribeFromTicker } from '@/api';
-import { mapState } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import WalletTicker from './WalletField';
 
 export default {
@@ -78,13 +78,9 @@ export default {
     ...mapState({
       symbols: (state) => state.symbols,
     }),
-    symbolNames() {
-      if (this.symbols.length) {
-        return this.symbols.map((item) => Object.keys(item)[0]);
-      }
-
-      return [];
-    },
+    ...mapGetters({
+      symbolNames: 'symbolNames',
+    }),
   },
   created() {
     if (this.symbolNames.length) {
@@ -101,6 +97,9 @@ export default {
     this.currentTicker = 'BTCUSDT';
   },
   methods: {
+    ...mapActions({
+      save: 'saveListTikers',
+    }),
     add() {
       console.log(this.tiker);
     },
@@ -124,7 +123,7 @@ export default {
   },
   watch: {
     tickers(newTikers) {
-      this.$store.dispatch('saveListTikers', newTikers);
+      this.save(newTikers);
     },
   },
 };

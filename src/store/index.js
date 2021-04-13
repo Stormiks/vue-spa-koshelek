@@ -29,6 +29,9 @@ export default new Vuex.Store({
       localStorage.setItem(nameKeyStorage, JSON.stringify(arr));
     },
   },
-  modules: {
+  getters: {
+    symbolNames(state) {
+      return state.symbols.map((item) => Object.keys(item)[0]) || [];
+    },
   },
 });
