@@ -6,46 +6,49 @@
     />
 
     <hr class="w-full border-t border-gray-600 my-4" />
-
-    <div
-      v-for="(symbolName, index) in symbolNames"
-      :key="`ticker-${index}`"
+    <template
+      v-if="tickers.length"
     >
-      <h2 class="text-center">{{ symbolName }}</h2>
+      <div
+        v-for="(symbolName, index) in tickerNames"
+        :key="`ticker-${index}`"
+      >
+        <h2 class="text-center">{{ symbolName }}</h2>
 
-      <div class="table__container flex">
-        <table
-          v-for="(symbolTypePrices, typeName) in tikersPrice[symbolName]"
-          :key="`symbol-${symbolName}-${typeName}`"
-          class="flex-grow mx-1 my-2.5"
-        >
-          <caption>{{ typeName }}</caption>
-          <thead>
-            <tr>
-              <td>Amount</td>
-              <td>Price</td>
-              <td>Total</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="(prices, indexPrices) in symbolTypePrices"
-              :key="`prices-${symbolName}-${typeName}-${indexPrices}`"
-            >
-              <td
-                v-for="(price, indexPrice) in prices"
-                :key="`price-${symbolName}-${typeName}-${indexPrice}`"
+        <div class="table__container flex">
+          <table
+            v-for="(symbolTypePrices, typeName) in tikersPrice[symbolName]"
+            :key="`symbol-${symbolName}-${typeName}`"
+            class="flex-grow mx-1 my-2.5"
+          >
+            <caption>{{ typeName }}</caption>
+            <thead>
+              <tr>
+                <td>Amount</td>
+                <td>Price</td>
+                <td>Total</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(prices, indexPrices) in symbolTypePrices"
+                :key="`prices-${symbolName}-${typeName}-${indexPrices}`"
               >
-                {{ price }}
-              </td>
-              <td>
-                {{ formatTotalPrice(prices) }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                <td
+                  v-for="(price, indexPrice) in prices"
+                  :key="`price-${symbolName}-${typeName}-${indexPrice}`"
+                >
+                  {{ price }}
+                </td>
+                <td>
+                  {{ formatTotalPrice(prices) }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </template>
   </section>
 </template>
 
@@ -69,15 +72,17 @@ export default {
     ...mapState({
       symbols: (state) => state.symbols,
     }),
+    tickerNames() {
+      return this.tickers.map((item) => Object.keys(item)[0]) || [];
+    },
     ...mapGetters({
       symbolNames: 'symbolNames',
     }),
   },
   created() {
-    if (this.symbolNames.length) {
-      this.tickers = this.symbols;
-
-      this.symbolNames.forEach((symbolName) => {
+    if (this.tickers.length) {
+      // this.tickers = [...this.symbols[0]];
+      this.tickers.forEach((symbolName) => {
         subscribeToTicker(symbolName, (newPrices) => {
           this.updateTickers(symbolName, newPrices);
         });
@@ -85,14 +90,24 @@ export default {
     }
   },
   mounted() {
-    this.currentTicker = 'BTCUSDT';
   },
   methods: {
     ...mapActions({
       save: 'saveListTikers',
     }),
     add(newSymbol) {
-      console.log(newSymbol);
+      const currentTicker = {
+        [newSymbol]: {
+          bids: [],
+          asks: [],
+        },
+      };
+
+      this.tickers = [...this.tickers, currentTicker];
+
+      subscribeToTicker(newSymbol, (newPrices) => {
+        this.updateTickers(newSymbol, newPrices);
+      });
     },
     updateTickers(tickerName, prices) {
       this.$set(this.tikersPrice, tickerName, prices);

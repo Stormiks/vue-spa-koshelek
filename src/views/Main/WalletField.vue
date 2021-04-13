@@ -21,8 +21,8 @@
     <small class="mr-1">доступные тикеры:</small>
 
     <span
-      v-for="(symbolName) in symbolNames"
-      :key="`available-ticker-${symbolName}`"
+      v-for="(symbolName, index) in symbolNames"
+      :key="`available-ticker-${symbolName}-${index}`"
       class="px-1.5 py-1 mr-1"
       :class="{ 'active': isActiveSym(symbolName) }"
     >
@@ -62,6 +62,9 @@ export default {
     },
     handleNewTicker() {
       this.$emit('new-ticker', this.formatInputValue);
+
+      this.input = '';
+      this.formatInputValue = '';
     },
   },
 };
