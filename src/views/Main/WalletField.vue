@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   name: 'WalletTicker',
@@ -45,8 +45,8 @@ export default {
     formatInputValue: '',
   }),
   computed: {
-    ...mapGetters({
-      symbolNames: 'symbolNames',
+    ...mapState({
+      symbolNames: (state) => state.availableSymbolsName,
     }),
   },
   methods: {

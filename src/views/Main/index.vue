@@ -80,9 +80,10 @@ export default {
     }),
   },
   created() {
-    if (this.tickers.length) {
-      // this.tickers = [...this.symbols[0]];
-      this.tickers.forEach((symbolName) => {
+    if (this.symbolNames.length) {
+      this.tickers = this.symbols;
+
+      this.symbolNames.forEach((symbolName) => {
         subscribeToTicker(symbolName, (newPrices) => {
           this.updateTickers(symbolName, newPrices);
         });

@@ -6,21 +6,24 @@ Vue.use(Vuex);
 
 const nameKeyStorage = 'crypto-list';
 
-const tickersData = JSON.parse(localStorage.getItem(nameKeyStorage)) || [
-  {
-    'BTCUSDT': {},
-  },
-  {
-    'BNBBTC': {},
-  },
-  {
-    'ETHBTC': {},
-  },
-];
+// [
+//   {
+//     'BTCUSDT': {},
+//   },
+//   {
+//     'BNBBTC': {},
+//   },
+//   {
+//     'ETHBTC': {},
+//   },
+// ]
+
+const tickersData = JSON.parse(localStorage.getItem(nameKeyStorage)) || [];
 
 export default new Vuex.Store({
   state: {
     symbols: tickersData,
+    availableSymbolsName: ['BTCUSDT', 'BNBBTC', 'ETHBTC'],
   },
   mutations: {
   },
