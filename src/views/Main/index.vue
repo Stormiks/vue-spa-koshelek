@@ -3,16 +3,7 @@
     <WalletTicker
       :placeholder="String(symbolNames[0])"
       @new-ticker="add"
-    >
-      <template v-slot:available-symbols>
-        <span
-          v-for="(symbolName) in symbolNames"
-          :key="`available-ticker-${symbolName}`"
-        >
-          {{ symbolName }}
-        </span>
-      </template>
-    </WalletTicker>
+    />
 
     <hr class="w-full border-t border-gray-600 my-4" />
 
@@ -100,8 +91,8 @@ export default {
     ...mapActions({
       save: 'saveListTikers',
     }),
-    add() {
-      console.log(this.tiker);
+    add(newSymbol) {
+      console.log(newSymbol);
     },
     updateTickers(tickerName, prices) {
       this.$set(this.tikersPrice, tickerName, prices);
