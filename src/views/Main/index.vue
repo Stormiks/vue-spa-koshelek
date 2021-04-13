@@ -70,7 +70,6 @@ export default {
   },
   data: () => ({
     ticker: '',
-    filter: '',
     tickers: [],
     tikersPrice: {},
     currentTicker: '',
@@ -88,8 +87,6 @@ export default {
     },
   },
   created() {
-    const tickersData = localStorage.getItem('crypto-list') || [];
-
     if (this.symbolNames.length) {
       this.tickers = this.symbols;
 
@@ -123,6 +120,11 @@ export default {
       }
 
       return '';
+    },
+  },
+  watch: {
+    tickers(newTikers) {
+      this.$store.dispatch('saveListTikers', newTikers);
     },
   },
 };
