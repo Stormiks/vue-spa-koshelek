@@ -38,7 +38,10 @@ module.exports = {
         'layoutDefault': path.resolve('src/views/layouts/DefaultLayout'),
         'layoutError': path.resolve('src/views/layouts/ErrorLayout'),
         'assets': path.resolve('src/assets'),
+        'less': path.resolve('src/assets/less'),
+        'css': path.resolve('src/assets/css'),
         'router': path.resolve('src/router'),
+        'store': path.resolve('src/store'),
         'components': path.resolve('src/components'),
         'plugins': path.resolve('src/components/plugins')
       }
