@@ -1,24 +1,28 @@
 <template>
   <div class="layout layout-default">
-    <DefaultHeader />
+    <header>
+      <DefaultNavbar />
+    </header>
 
-    <main class="main">
+    <main class="px-5 py-3">
       <router-view />
     </main>
   </div>
 </template>
 
 <script>
-import DefaultHeader from './DefaultHeader';
+import DefaultNavbar from './DefaultNavbar';
 
 export default {
   name: 'DefaultLayout',
   components: {
-    DefaultHeader,
+    DefaultNavbar,
   },
 };
 </script>
 
 <style lang="less" scoped>
+main {
 
+}
 </style>
