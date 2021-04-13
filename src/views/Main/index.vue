@@ -38,7 +38,7 @@
                   v-for="(price, indexPrice) in prices"
                   :key="`price-${symbolName}-${typeName}-${indexPrice}`"
                 >
-                  {{ price }}
+                  {{ formatPrice(price) }}
                 </td>
                 <td>
                   {{ formatTotalPrice(prices) }}
@@ -113,13 +113,22 @@ export default {
     updateTickers(tickerName, prices) {
       this.$set(this.tikersPrice, tickerName, prices);
     },
+    formatPrice(price) {
+      const formatToNumberPrice = Number(price);
+      const currentPrice = formatToNumberPrice > 1 ? formatToNumberPrice.toFixed(2) : formatToNumberPrice.toPrecision(2);
+
+      return currentPrice;
+    },
     formatTotalPrice(prices) {
       const pricesOne = () => !!prices[0];
       const pricesTwo = () => !!prices[1];
 
       if (prices.length === 2) {
+        const formatPriceOne = this.formatPrice(prices[0]);
+        const formatPriceTwo = this.formatPrice(prices[1]);
+
         if (pricesOne() && pricesTwo()) {
-          return Number(prices[1]) * Number(prices[0]);
+          return this.formatPrice(formatPriceOne * formatPriceTwo);
         }
 
         return '';
