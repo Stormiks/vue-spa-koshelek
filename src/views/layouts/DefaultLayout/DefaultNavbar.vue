@@ -131,6 +131,8 @@ export default {
     }
   }
   &__menu {
+    max-width: 300px;
+
     li {
       &:hover {
         background-color: rgba(#87d2de, 32%);
