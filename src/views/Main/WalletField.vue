@@ -4,14 +4,14 @@
     <label for="wallet" class="block text-sm font-medium text-gray-700"
       >Добавьте тикер</label
     >
-    <div class="mt-1 relative rounded-md shadow-md">
+    <div class="wallet__field mt-1 relative rounded-md shadow-md">
       <input
         v-model.trim="input"
         @keydown.enter="handleNewTicker"
         type="text"
         name="wallet"
         id="wallet"
-        class="block w-full p-3 pr-10 border-gray-300 text-gray-900 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm rounded-md"
+        class="border-gray-300 text-gray-900 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
         :placeholder="`Например ${symbolNames[0]}`"
       />
     </div>
@@ -88,6 +88,17 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.wallet__field {
+  input {
+    display: block;
+    border-radius: 6px;
+    width: 100%;
+    padding-left: .75rem;
+    padding-top: .75rem;
+    padding-right: 2.5rem;
+    padding-bottom: .75rem;
+  }
+}
 .available-tickers {
   span {
     border-radius: 6px;

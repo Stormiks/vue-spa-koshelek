@@ -90,8 +90,6 @@ export default {
       });
     }
   },
-  mounted() {
-  },
   methods: {
     ...mapActions({
       save: 'saveListTikers',
