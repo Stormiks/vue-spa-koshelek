@@ -14,6 +14,13 @@
         :key="`ticker-${index}`"
         class="ticker__table"
       >
+        <button
+          @click="handleRemoveTicker(symbolName)"
+          class="ticker__btn ticker__btn_remove"
+          type="button"
+        >
+          Удалить &#10006;
+        </button>
         <h2 class="text-center">{{ symbolName }}</h2>
 
         <div class="ticker__table_box">
@@ -110,6 +117,9 @@ export default {
       subscribeToTicker(newSymbol, (newPrices) => {
         this.updateTickers(newSymbol, newPrices);
       });
+    },
+    handleRemoveTicker(nameTicker) {
+      console.log('handleRemoveTicker', nameTicker);
     },
     updateTickers(tickerName, prices) {
       this.$set(this.tikersPrice, tickerName, prices);
