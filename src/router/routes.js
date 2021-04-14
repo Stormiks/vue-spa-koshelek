@@ -4,22 +4,22 @@ const ErrorLayout = () => import('views/layouts/ErrorLayout/ErrorLayout');
 export const defaultRoute = {
   path: '/',
   component: DefaultLayout,
-  redirect: { name: 'Main' },
+  redirect: { name: 'Trade' },
   children: [
     {
-      path: '',
-      name: 'Main',
-      component: () => import('views/Main'),
+      path: 'trade',
+      name: 'Trade',
+      component: () => import('views/Trade'),
       meta: {
         title: 'Биржа',
       },
     },
     {
-      path: 'settings',
-      name: 'Settings',
-      component: () => import('views/Settings'),
+      path: 'statistics',
+      name: 'Statistics',
+      component: () => import('views/Statistics'),
       meta: {
-        title: 'Настройки',
+        title: 'Статистика',
       },
     },
   ],

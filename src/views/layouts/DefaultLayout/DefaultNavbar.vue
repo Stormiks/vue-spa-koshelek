@@ -41,7 +41,7 @@
       <li>
         <router-link
           :to="{
-            name: 'Main'
+            name: 'Trade'
           }"
           class=""
         >
@@ -51,11 +51,11 @@
       <li>
         <router-link
           :to="{
-            name: 'Settings'
+            name: 'Statistics'
           }"
           class=""
         >
-          Настройки
+          Статистика
         </router-link>
       </li>
     </NavMenu>
@@ -64,7 +64,7 @@
     <li>
       <router-link
         :to="{
-          name: 'Main'
+          name: 'Trade'
         }"
         class=""
       >
@@ -74,11 +74,11 @@
     <li>
       <router-link
         :to="{
-          name: 'Settings'
+          name: 'Statistics'
         }"
         class=""
       >
-        Настройки
+        Статистика
       </router-link>
     </li>
   </NavMenu>

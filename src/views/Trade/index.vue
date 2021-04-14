@@ -63,10 +63,10 @@
 <script>
 import { subscribeToTicker, unsubscribeFromTicker } from '@/api';
 import { mapState, mapGetters, mapActions } from 'vuex';
-import WalletTicker from './WalletField';
+import WalletTicker from 'components/WalletField';
 
 export default {
-  name: 'Main',
+  name: 'Trade',
   components: {
     WalletTicker,
   },

@@ -7,6 +7,13 @@ const instAxios = axios.create({
 });
 
 function sendToAxiosSubscriber(ticker) {
+  // TODO: The base API address must be put into a constant
+  /**
+   * In theory, you need to put it in a constant,
+   * but @vue/cli blocks proxied requests to an external API.
+   * And specify this rendered address
+   * to the "axios" instance being created
+   */
   instAxios.get(`https://api.binance.com/api/v3/depth?symbol=${ticker}&limit=10`)
     .then((res) => res.data)
     .then((data) => {
