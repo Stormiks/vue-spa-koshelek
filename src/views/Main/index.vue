@@ -2,7 +2,7 @@
   <section class="main-page">
     <WalletTicker
       :existing-subscriptions="symbolNames"
-      @new-ticker="add"
+      @new-ticker="handleAddTicker"
     />
 
     <hr class="w-full border-t border-gray-600 my-4" />
@@ -95,7 +95,7 @@ export default {
     ...mapActions({
       save: 'saveListTikers',
     }),
-    add(newSymbol) {
+    handleAddTicker(newSymbol) {
       if (this.tickerNames.includes(newSymbol)) return;
 
       const currentTicker = {
