@@ -1,7 +1,7 @@
 <template>
   <section class="main-page">
     <WalletTicker
-      :placeholder="String(symbolNames[0])"
+      :existing-subscriptions="symbolNames"
       @new-ticker="add"
     />
 
@@ -97,6 +97,8 @@ export default {
       save: 'saveListTikers',
     }),
     add(newSymbol) {
+      if (this.tickerNames.includes(newSymbol)) return;
+
       const currentTicker = {
         [newSymbol]: {
           bids: [],
