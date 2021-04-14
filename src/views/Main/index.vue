@@ -118,8 +118,12 @@ export default {
         this.updateTickers(newSymbol, newPrices);
       });
     },
-    handleRemoveTicker(nameTicker) {
-      console.log('handleRemoveTicker', nameTicker);
+    handleRemoveTicker(nameTickerToRemove) {
+      this.tickers = this.tickers.filter((t) => {
+        return !Object.prototype.hasOwnProperty.call(t, nameTickerToRemove);
+      });
+
+      unsubscribeFromTicker(nameTickerToRemove);
     },
     updateTickers(tickerName, prices) {
       this.$set(this.tikersPrice, tickerName, prices);

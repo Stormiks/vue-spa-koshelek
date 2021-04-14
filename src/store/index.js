@@ -26,10 +26,15 @@ export default new Vuex.Store({
     availableSymbolsName: ['BTCUSDT', 'BNBBTC', 'ETHBTC'],
   },
   mutations: {
+    setArrayOfSelectedSymbols(state, arr) {
+      state.symbols = arr;
+    },
   },
   actions: {
-    saveListTikers({ }, arr) {
+    saveListTikers({ commit }, arr) {
       localStorage.setItem(nameKeyStorage, JSON.stringify(arr));
+
+      commit('setArrayOfSelectedSymbols', arr);
     },
   },
   getters: {
