@@ -1,4 +1,5 @@
 import 'css/tailwind.css';
+import 'less/style.less';
 
 import Vue from 'vue';
 import App from '@/App.vue';

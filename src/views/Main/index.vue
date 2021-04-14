@@ -12,14 +12,15 @@
       <div
         v-for="(symbolName, index) in tickerNames"
         :key="`ticker-${index}`"
+        class="ticker__table"
       >
         <h2 class="text-center">{{ symbolName }}</h2>
 
-        <div class="table__container flex">
+        <div class="ticker__table_box">
           <table
             v-for="(symbolTypePrices, typeName) in tikersPrice[symbolName]"
             :key="`symbol-${symbolName}-${typeName}`"
-            class="flex-grow mx-1 my-2.5"
+            class="table-auto flex-grow mx-1 my-2.5"
           >
             <caption>{{ typeName }}</caption>
             <thead>
@@ -146,5 +147,56 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.ticker {
+  &__btn {
+    position: absolute;
+    padding: .15rem .25rem;
+    border-radius: 6px;
 
+    &_remove {
+      top: 5px;
+      right: 15px;
+      box-shadow: 0 0 3px 1px rgba(@color--black, 37%);
+      transition: box-shadow .2s linear;
+
+      &:hover,
+      &:focus {
+        box-shadow: 0 0 5px 2px rgba(@color--black, 54%);
+      }
+    }
+  }
+  &__table {
+    position: relative;
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    caption {
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: .25rem .25rem .5rem;
+    }
+
+    thead {
+      td {
+        padding: .25rem .25rem .5rem;
+        text-align: center;
+        font-weight: 500;
+      }
+    }
+
+    tbody {
+      td {
+        line-height: 1.5rem;
+      }
+    }
+
+    &_box {
+      display: flex;
+      padding-top: 1.5rem;
+    }
+  }
+}
 </style>

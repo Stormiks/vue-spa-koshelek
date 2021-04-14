@@ -30,7 +30,7 @@ export default {
     border-radius: 6px;
 
     @media (max-width: 1023px) {
-      box-shadow: 0 0 2px 0 #000;
+      box-shadow: 0 0 2px 0 @color--white;
     }
 
     a {

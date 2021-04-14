@@ -123,7 +123,7 @@ export default {
     position: relative;
 
     &:hover {
-      border-color: lighten(#000, 40%);
+      border-color: lighten(@color--white, 40%);
     }
 
     @media (min-width: 1024px) {

@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-main {
-
+.layout {
+  min-height: 100vh;
 }
 </style>
