@@ -19,19 +19,26 @@
     <span v-if="isExistingSubscriptions">Такой тикер уже добавлен</span>
   </div>
 
-  <div class="available-tickers mt-2.5">
+  <div class="available-tickers mt-3.5">
     <small class="mr-1">доступные тикеры:</small>
 
-    <span
-      role="button"
-      v-for="(symbolName, index) in symbolNames"
-      @click="setToSymbolName(symbolName)"
-      :key="`available-ticker-${symbolName}-${index}`"
-      class="px-1.5 py-1 mr-1"
-      :class="{ 'active': symbolName === symNameInputValue }"
-    >
-      {{ symbolName }}
-    </span>
+    <ul class="inline">
+      <li
+        class="inline-block"
+        v-for="(symbolName, index) in symbolNames"
+        :key="`available-ticker-${symbolName}-${index}`"
+      >
+        <span
+          role="button"
+          @click="setToSymbolName(symbolName)"
+          tabindex="0"
+          class="px-1.5 py-1 mr-1"
+          :class="{ 'active': symbolName === symNameInputValue }"
+        >
+          {{ symbolName }}
+        </span>
+      </li>
+    </ul>
   </div>
 </div>
 </template>
@@ -121,7 +128,13 @@ export default {
     border-radius: 20px;
     padding: .35rem .75rem;
 
+    &:focus {
+      outline: none;
+      border-width: 3px;
+    }
+
     &:hover,
+    &:focus,
     &.active {
       box-shadow: 0 0 3px 1px rgba(@color--black, 33%);
     }
