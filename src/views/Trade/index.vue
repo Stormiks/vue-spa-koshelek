@@ -19,7 +19,7 @@
           class="ticker__btn ticker__btn_remove"
           type="button"
         >
-          Удалить &#10006;
+          Удалить <span>&#10006;</span>
         </button>
         <h2 class="text-center">{{ symbolName }}</h2>
 
@@ -173,6 +173,11 @@ export default {
       box-shadow: 0 0 3px 1px rgba(@color--black, 37%);
       transition: box-shadow .2s linear;
 
+      span {
+        font-size: 70%;
+        vertical-align: text-bottom;
+      }
+
       &:hover,
       &:focus {
         box-shadow: 0 0 5px 2px rgba(@color--black, 54%);
@@ -187,6 +192,14 @@ export default {
       font-weight: bold;
     }
 
+    table {
+      border-width: 1px;
+    }
+
+    td {
+      padding: .35rem;
+    }
+
     caption {
       font-size: 1.2rem;
       font-weight: 600;
@@ -195,7 +208,8 @@ export default {
 
     thead {
       td {
-        padding: .25rem .25rem .5rem;
+        background-color: darkgrey;
+        padding: .35rem .5rem;
         text-align: center;
         font-weight: 500;
       }
@@ -205,6 +219,10 @@ export default {
       td {
         line-height: 1.5rem;
       }
+    }
+
+    &:not(:only-of-type) {
+      margin-bottom: 2rem;
     }
 
     &_box {
